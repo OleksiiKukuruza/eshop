@@ -97,8 +97,8 @@ class BaseController {
 
     delete(req, res) {
         const model = this.getModel();
-        return model.remove({_id: req.params.id})
-            .then((result)=> {
+        return model.remove({ _id: req.params.id })
+            .then((result) => {
                 res.json({
                     status: 'success',
                     response: result

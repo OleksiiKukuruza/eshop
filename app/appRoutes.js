@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular
-        .module('eshop')
+        .module('app')
         .config(function ($urlRouterProvider) {
             $urlRouterProvider.otherwise('/');
         });

@@ -22,7 +22,7 @@ const LectureSchema = new Schema({
     type: {
         type: String
     }
-}, {collection: 'lectures'});
+}, { collection: 'lectures' });
 
 LectureSchema.plugin(deepPopulate);
 
