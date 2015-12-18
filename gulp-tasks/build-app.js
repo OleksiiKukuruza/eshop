@@ -2,9 +2,9 @@ var gulp = require('gulp');
 var del = require('del');
 var less = require('gulp-less');
 var concat = require('gulp-concat');
+var babel = require('gulp-babel');
 var imagemin = require('gulp-imagemin');
 var sourcemaps = require('gulp-sourcemaps');
-var livereload = require('gulp-livereload');
 var paths = {
     scripts: 'app/**/*.js',
     images: 'app/assets/images/**/*',
@@ -20,6 +20,7 @@ gulp.task('clean:app:js', function () {
 gulp.task('build:app:js', ['clean:app:js'], function () {
     return gulp.src(paths.scripts)
         .pipe(sourcemaps.init())
+        .pipe(babel({presets: ['es2015']}))
         .pipe(concat('app.js'))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('build/js'));
@@ -35,8 +36,7 @@ gulp.task('build:app:css', ['clean:app:css'], function () {
         .pipe(less())
         .pipe(concat('app.css'))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('build/css'))
-        .pipe(livereload());
+        .pipe(gulp.dest('build/css'));
 });
 
 gulp.task('clean:app:images', function () {
