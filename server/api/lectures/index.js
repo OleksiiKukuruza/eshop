@@ -6,11 +6,11 @@ const controller = new ControllerClass();
 const router = express.Router();
 
 router.route('')
-    .get(controller.get.bind(controller))
-    .post(controller.add.bind(controller));
+    .get(controller.read.bind(controller))
+    .post(controller.create.bind(controller));
 
 router.route('/:id')
-    .get(controller.getById.bind(controller))
+    .get(controller.readById.bind(controller))
     .put(controller.update.bind(controller))
     .delete(controller.delete.bind(controller));
 

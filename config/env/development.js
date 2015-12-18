@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-    db: 'mongodb://admin:111111@ds049754.mongolab.com:49754/curator',
+    db: 'mongodb://root:root@ds057944.mongolab.com:57944/app',
     app: {
-        title: 'eshop dev'
+        title: 'app dev'
     }
 };

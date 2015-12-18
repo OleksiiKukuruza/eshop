@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-    db: 'mongodb://localhost:27017/eshop',
+    db: 'mongodb://localhost:27017/app',
     app: {
-        title: 'eshop local'
+        title: 'app local'
     }
 };
