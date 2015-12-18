@@ -7,12 +7,12 @@ var paths = {
     server: 'server/**/*.js'
 };
 
-gulp.task('serve', function () {
+gulp.task('serve', ['eslint:serve'], function () {
     var server = gulpLiveServer.new(['--harmony', 'app.js']);
 
     server.start();
 
-    var serverWatcher = gulp.watch(paths.server);
+    var serverWatcher = gulp.watch(paths.server, ['eslint:serve']);
     var stylesWatcher = gulp.watch(paths.styles, ['build:app:css']);
     var scriptsWatcher = gulp.watch(paths.scripts, ['build:app:js']);
     var imagesWatcher = gulp.watch(paths.images, ['build:app:images']);
@@ -23,7 +23,7 @@ gulp.task('serve', function () {
 
     stylesWatcher.on('change', function (file) {
         server.notify.apply(server, [file]);
-    });
+});
 
     scriptsWatcher.on('change', function (file) {
         server.notify.apply(server, [file]);
@@ -32,5 +32,4 @@ gulp.task('serve', function () {
     imagesWatcher.on('change', function (file) {
         server.notify.apply(server, [file]);
     });
-
 });

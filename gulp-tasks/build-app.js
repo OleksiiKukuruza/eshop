@@ -17,7 +17,7 @@ gulp.task('clean:app:js', function () {
     del(['build/js/app.js'], {force: true});
 });
 
-gulp.task('build:app:js', ['clean:app:js'], function () {
+gulp.task('build:app:js', ['eslint:app', 'clean:app:js'], function () {
     return gulp.src(paths.scripts)
         .pipe(sourcemaps.init())
         .pipe(babel({presets: ['es2015']}))
