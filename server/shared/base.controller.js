@@ -1,7 +1,6 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const _lodash = require('lodash');
 const RESPONSES = require('./responses.status.js');
 
 class BaseController {
@@ -37,7 +36,6 @@ class BaseController {
     }
 
     read(req, res) {
-        console.log(this);
         const model = this.getModel();
         return model
             .find(req.params)
@@ -72,7 +70,7 @@ class BaseController {
         return model
             .findById(req.params.id)
             .then(modelInstance => {
-                const updatedInstance = _lodash.extend(modelInstance, req.body);
+                const updatedInstance = Object.assign(modelInstance, req.body);
                 return updatedInstance.save();
             })
             .then(result => {

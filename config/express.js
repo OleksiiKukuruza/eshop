@@ -32,7 +32,7 @@ module.exports = () => {
     app.use('/', express.static(path.resolve('./app')));
     app.use('/build', express.static(path.resolve('./build')));
 
-    app.use('/api/lectures', require(path.resolve('./server/api/lectures')));
+    app.use('/api/smartphones', require(path.resolve('./server/api/smartphones')));
 
     app.get('/', (req, res) => {
         res.sendFile('./index.html');
