@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const ControllerClass = require('./lectures.controller');
+const ControllerClass = require('./smartphone.controller.js');
 const controller = new ControllerClass();
 const router = express.Router();
 
