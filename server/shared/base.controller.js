@@ -6,23 +6,14 @@ const RESPONSES = require('./responses.status.js');
 class BaseController {
 
     constructor(model) {
-        if (model instanceof mongoose.Schema) {
-            throw new Error('Model should be a mongoose.Schema instance');
+        if (!(model.schema instanceof mongoose.Schema)) {
+            throw new Error('Model.schema should be a mongoose.Schema instance');
         }
         this._model = model;
     }
 
-    getModel() {
-        return this._model;
-    }
-
-    getModelInstance(config) {
-        return new this._model(config);
-    }
-
     create(req, res) {
-        const modelInstance = this.getModelInstance(req.body);
-        return modelInstance
+        new this._model(req.body)
             .save()
             .then(result => {
                 res
@@ -36,8 +27,7 @@ class BaseController {
     }
 
     read(req, res) {
-        const model = this.getModel();
-        return model
+        this._model
             .find(req.params)
             .then(results => {
                 res
@@ -51,8 +41,7 @@ class BaseController {
     }
 
     readById(req, res) {
-        const model = this.getModel();
-        return model
+        this._model
             .findById(req.params.id)
             .then(result => {
                 res
@@ -66,8 +55,7 @@ class BaseController {
     }
 
     update(req, res) {
-        const model = this.getModel();
-        return model
+        this._model
             .findById(req.params.id)
             .then(modelInstance => {
                 const updatedInstance = Object.assign(modelInstance, req.body);
@@ -85,9 +73,8 @@ class BaseController {
     }
 
     delete(req, res) {
-        const model = this.getModel();
-        return model
-            .remove({ _id: req.params.id })
+        this._model
+            .remove({_id: req.params.id})
             .then(result => {
                 res
                     .status(RESPONSES.STATUS.OK)
